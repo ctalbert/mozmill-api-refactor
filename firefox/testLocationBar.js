@@ -50,8 +50,7 @@ function testElements() {
   browser.navBar.urlBarText.keyPress("VK_RETURN");
   browser.waitForPageLoad();
   
-  var count = services.get("@mozilla.org/browser/sessionstore;1", Ci.nsISessionStore).
-              getClosedWindowCount(browser.window);
+  var count = services.session.getClosedWindowCount(browser.window);
   Assert.is(count, 0, "No windows are in the undo stack");
   
   var tabItems = browser.tabBar.tabs.items;
