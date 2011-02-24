@@ -44,7 +44,8 @@
 function testModule(module) {
   // Add generally used requires
   module.Assert = require("assert");
-  module.Services = require("services");
+  module.services = require("services");
+
   module.Browser = require("ui/browser");
 
   // Initialize the test module
