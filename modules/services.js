@@ -50,34 +50,103 @@ Components.utils.import("resource://gre/modules/XPCOMUtils.jsm");
 /**
  *
  */
-services.get = function get(aContractId, aInterface) {
-  return Cc[aContractId].getService(aInterface);
-}
+services.appinfo = Services.appinfo;
 
+/**
+ *
+ */
+services.console = Services.console;
 
-// XXX We can't use the native prefs service yet because it QI to nsIPrefBranch2
-// and our preferences module doesn't support it
+/**
+ *
+ */
+services.contentPrefs = Services.contentPrefs;
+
+/**
+ *
+ */
+services.dirsrv = Services.dirsrv;
+
+/**
+ *
+ */
+services.eTLD = Services.eTLD;
+
+/**
+ *
+ */
+services.io = Services.io;
+
+/**
+ *
+ */
+services.locale = Services.locale;
+
+/**
+ *
+ */
+services.obs = Services.obs;
+
+/**
+ *
+ */
+services.perms = Services.perms;
+
+/**
+ *
+ * XXX We can't use the native prefs service yet because it QI to nsIPrefBranch2
+ * and our preferences module doesn't support it
+ */
 // services.prefs = Services.prefs;
 XPCOMUtils.defineLazyGetter(services, "prefs", function () {
   return Cc["@mozilla.org/preferences-service;1"].
          getService(Ci.nsIPrefService);
 });
 
+/**
+ *
+ */
+services.prompt = Services.prompt;
 
-services.appInfo = Services.appinfo;
+/**
+ *
+ */
+services.search = Services.search;
 
-services.directory = Services.dirsrv;
+/**
+ *
+ */
+XPCOMUtils.defineLazyGetter(services, "session", function () {
+  return Cc["@mozilla.org/browser/sessionstore;1"].
+         getService(Ci.nsISessionStore);
+});
 
-services.io = Services.io;
+/**
+ *
+ */
+services.storage = Services.storage;
 
-services.observer = Services.obs;
+/**
+ *
+ */
+services.strings = Services.strings;
 
-services.permissionManager = Services.perms;
+/**
+ *
+ */
+services.urlFormatter = Services.urlFormatter;
 
-services.stringBundle = Services.strings;
+/**
+ *
+ */
+services.vc = Services.vc;
 
-services.versionComparator = Services.vc;
+/**
+ *
+ */
+services.wm = Services.wm;
 
-services.windowMediator = Services.wm;
-
-services.windowWatcher = Services.ww;
+/**
+ *
+ */
+services.ww = Services.ww;

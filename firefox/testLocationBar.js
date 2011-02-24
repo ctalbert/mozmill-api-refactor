@@ -56,7 +56,7 @@ function testElements() {
 
   var count = Services.sessionStore.getClosedWindowCount(browser.window);
   expect.equal(count, 0, "No windows are in the undo stack");
-  
+
   var tabItems = browser.tabBar.tabs.items;
   expect.equal(tabItems[1].node.tagName, "tab", "Entry is a tab");
 }
