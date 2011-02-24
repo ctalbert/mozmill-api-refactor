@@ -14,7 +14,7 @@
  * The Original Code is MozMill Test code.
  *
  * The Initial Developer of the Original Code is the Mozilla Foundation.
- * Portions created by the Initial Developer are Copyright (C) 2010
+ * Portions created by the Initial Developer are Copyright (C) 2011
  * the Initial Developer. All Rights Reserved.
  *
  * Contributor(s):
@@ -36,14 +36,48 @@
  * ***** END LICENSE BLOCK ***** */
 
 
-const PREFERENCES = "@mozilla.org/preferences-service;1";
-const SESSION_STORE = "@mozilla.org/browser/sessionstore;1";
-const WINDOW_MEDIATOR = "@mozilla.org/appshell/window-mediator;1"
+/**
+ * @name services
+ * @namespace 
+ */
+var services = exports;
 
-var preferences = Cc[PREFERENCES].getService(Ci.nsIPrefService);
-var sessionStore = Cc[SESSION_STORE].getService(Ci.nsISessionStore);
-var windowMediator = Cc[WINDOW_MEDIATOR].getService(Ci.nsIWindowMediator);
+// Import global Javascript modules offered by Firefox
+Components.utils.import('resource://gre/modules/Services.jsm');
+Components.utils.import("resource://gre/modules/XPCOMUtils.jsm");
 
-exports.preferences = preferences
-exports.sessionStore = sessionStore;
-exports.windowMediator = windowMediator;
+
+/**
+ *
+ */
+services.get = function get(aContractId, aInterface) {
+  return Cc[aContractId].getService(aInterface);
+}
+
+
+// XXX We can't use the native prefs service yet because it QI to nsIPrefBranch2
+// and our preferences module doesn't support it
+// services.prefs = Services.prefs;
+XPCOMUtils.defineLazyGetter(services, "prefs", function () {
+  return Cc["@mozilla.org/preferences-service;1"].
+         getService(Ci.nsIPrefService);
+});
+
+
+services.appInfo = Services.appinfo;
+
+services.directory = Services.dirsrv;
+
+services.io = Services.io;
+
+services.observer = Services.obs;
+
+services.permissionManager = Services.perms;
+
+services.stringBundle = Services.strings;
+
+services.versionComparator = Services.vc;
+
+services.windowMediator = Services.wm;
+
+services.windowWatcher = Services.ww;
