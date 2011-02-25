@@ -37,7 +37,7 @@
 
 /**
  * @name widgets
- * @namespace Defines proxy classes for creation of a hierarchal map
+ * @namespace Defines proxy classes for creation of a hierarchical map
  */
 
 var Inheritance = require("../external/inheritance");
@@ -49,7 +49,7 @@ var Services = require("../services");
 // made configurable by an external file or similar.
 const ELEM_WAIT_TIME = 5000;
 
-var Element = Inheritance.Class.extend(
+var Element = Inheritance.Class.create(
 /** @lends widgets.Element */
 {
   /**
