@@ -56,11 +56,28 @@ var Element = Inheritance.Class.create(
    * Element is a proxy for an element of a DOM. It defines the core binding
    * behavior: locating the element via any of serveral lookup methods.
    * It also provides the owner/owned relationship that allows Elements to be
-   * arranged in a hierarchy.
+   * arranged in a tree-shaped Element map.
    *
    * @class A proxy for an element of a DOM
    * @constructs
    * @memberOf widgets
+   *
+   * @param {String} locatorType 
+   *   The type of locator being supplied. Choices are:
+   *     <ul>
+   *     <li>"node": A node, as in Mozmill's Elem()</li>
+   *     <li>"id": An ID string, as in Mozmill's ID()</li>
+   *     <li>"xpath": An XPath string, as in Mozmill's XPath()</li>
+   *     <li>"name": A name string, as in Mozmill's Name()</li>
+   *     <li>"lookup: A lookup string, as in Mozmill's Lookup()</li>
+   *     <li>"tag": A JQuery-style element selector string</li>
+   *     </ul>
+   * @param {node|String} locator 
+   *   The actual locator. If locatorType is "node," a node object is expected. 
+   *   For all other types, a String is expected.
+   * @param {document|Element} owner
+   *   The owner (parent) of this Element. The top of an Element map is owned by 
+   *   a document. Other members of the map are owned by their parent Elements.
    */
   initialize: function Element_initialize(locatorType, locator, owner) {
     // Locators are used to find the element. See _locateElem().
@@ -85,13 +102,13 @@ var Element = Inheritance.Class.create(
         // We must be a top-level element. We sent in a document as owner.
         this._owner = undefined;
         this._document = owner;
-        this._controller = mozmill.controller.MozMillController(this._document.defaultView);
+        this._controller = mozmill.controller.MozMillcontroller(this._document.defaultView);
       }
     }
     else {
       // Not supplied at all, so we're top level and our doc is the current window.
       this._owner = undefined;
-      this._controller = mozmill.getBrowserController();
+      this._controller = mozmill.getBrowsercontroller();
       this._document = this._controller.window.document;
     }
 
@@ -155,7 +172,7 @@ var Element = Inheritance.Class.create(
       // look like.
       case "tag":
         var collector = this._getCollector();
-        collector.queryNodes(this._locator);
+        collector.querynodes(this._locator);
         if (collector.nodes.length < 1)
           throw new Error("Could not find node for tag: " + this._locator);
         if (collector.nodes.length > 1)
@@ -172,18 +189,47 @@ var Element = Inheritance.Class.create(
   // out the guts of the property into a private _function so that the
   // parent() function will work correctly, then call private _function
   // from the property.
+  
+  /**
+   * The DOM document that is at the top of the map containing this Element.
+   *
+   * @name document
+   * @type document
+   * @fieldOf widgets.Element#
+   */
   get document() {
     return this._document;
   },
 
+  /**
+   * The Mozmill controller object associated with this Element.
+   *
+   * @name controller
+   * @type controller
+   * @fieldOf widgets.Element#
+   */
   get controller() {
     return this._controller;
   },
 
+  /**
+   * The DOM window object associated with this Element.
+   *
+   * @name window
+   * @type window
+   * @fieldOf widgets.Element#
+   */
   get window() {
     return this._controller.window;
   },
 
+  /** 
+   * The Mozmill elementslib object associated with this Element.
+   *
+   * @name elem
+   * @type elementslib
+   * @fieldOf widgets.Element#
+   */
   get elem() {
     if (!this._elem)
       this._locateElem();
@@ -191,8 +237,15 @@ var Element = Inheritance.Class.create(
     return this._elem;
   },
 
+  /**
+   * The DOM node object associated with this Element.
+   *
+   * @name node
+   * @type node
+   * @fieldOf widgets.Element#
+   */
   get node() {
-    return this.elem.getNode();
+    return this.elem.getnode();
   }
 });
 
@@ -207,6 +260,23 @@ var XmlElement = Inheritance.Class.extend(Element,
    * @constructs
    * @memberOf widgets
    * @extends widgets.Element
+   *
+   * @param {String} locatorType 
+   *   The type of locator being supplied. Choices are:
+   *     <ul>
+   *     <li>"node": A node, as in Mozmill's Elem()</li>
+   *     <li>"id": An ID string, as in Mozmill's ID()</li>
+   *     <li>"xpath": An XPath string, as in Mozmill's XPath()</li>
+   *     <li>"name": A name string, as in Mozmill's Name()</li>
+   *     <li>"lookup: A lookup string, as in Mozmill's Lookup()</li>
+   *     <li>"tag": A JQuery-style element selector string</li>
+   *     </ul>
+   * @param {node|String} locator 
+   *   The actual locator. If locatorType is "node," a node object is expected. 
+   *   For all other types, a String is expected.
+   * @param {document|Element} owner
+   *   The owner (parent) of this Element. The top of an Element map is owned by 
+   *   a document. Other members of the map are owned by their parent Elements.
    */
    initialize: function XmlElement_initialize(locatorType, locator, owner) {
      this.parent(locatorType, locator, owner);
@@ -223,6 +293,23 @@ var XmlTree = Inheritance.Class.extend(Element,
    * @constructs
    * @memberOf widgets
    * @extends widgets.Element
+   *
+   * @param {String} locatorType 
+   *   The type of locator being supplied. Choices are:
+   *     <ul>
+   *     <li>"node": A node, as in Mozmill's Elem()</li>
+   *     <li>"id": An ID string, as in Mozmill's ID()</li>
+   *     <li>"xpath": An XPath string, as in Mozmill's XPath()</li>
+   *     <li>"name": A name string, as in Mozmill's Name()</li>
+   *     <li>"lookup: A lookup string, as in Mozmill's Lookup()</li>
+   *     <li>"tag": A JQuery-style element selector string</li>
+   *     </ul>
+   * @param {node|String} locator 
+   *   The actual locator. If locatorType is "node," a node object is expected. 
+   *   For all other types, a String is expected.
+   * @param {document|Element} owner
+   *   The owner (parent) of this Element. The top of an Element map is owned by 
+   *   a document. Other members of the map are owned by their parent Elements.
    */
    initialize: function XmlTree_initialize(locatorType, locator, owner) {
      this.parent(locatorType, locator, owner);
@@ -241,34 +328,122 @@ var HtmlXulElement = Inheritance.Class.extend(Element,
    * @constructs
    * @memberOf widgets
    * @extends widgets.Element
+   *
+   * @param {String} locatorType 
+   *   The type of locator being supplied. Choices are:
+   *     <ul>
+   *     <li>"node": A node, as in Mozmill's Elem()</li>
+   *     <li>"id": An ID string, as in Mozmill's ID()</li>
+   *     <li>"xpath": An XPath string, as in Mozmill's XPath()</li>
+   *     <li>"name": A name string, as in Mozmill's Name()</li>
+   *     <li>"lookup: A lookup string, as in Mozmill's Lookup()</li>
+   *     <li>"tag": A JQuery-style element selector string</li>
+   *     </ul>
+   * @param {node|String} locator 
+   *   The actual locator. If locatorType is "node," a node object is expected. 
+   *   For all other types, a String is expected.
+   * @param {document|Element} owner
+   *   The owner (parent) of this Element. The top of an Element map is owned by 
+   *   a document. Other members of the map are owned by their parent Elements.
    */
   initialize: function HtmlXulElement_initialize(locatorType, locator, owner) {
     this.parent(locatorType, locator, owner);
   },
 
+  /**
+   * Clicks on the Element with the left mouse button.
+   *
+   * @name click
+   * @methodOf widgets.HtmlXulElement#
+   *
+   * @param {Number} [left=0] Relative horizontal coordinate inside Element.
+   * @param {Number} [top=0] Relative vertical coordinate inside Element.
+   * @returns {Boolean} true if succeeded, false otherwise.
+   */
   click: function HtmlXulElement_click(left, top) {
-    this.controller.click(this.elem, left, top);
+    return this.controller.click(this.elem, left, top);
   },
 
+  /**
+   * Double-clicks on the Element with the left mouse button.
+   *
+   * @name doubleClick
+   * @methodOf widgets.HtmlXulElement#
+   *
+   * @param {Number} [left=0] Relative horizontal coordinate inside Element.
+   * @param {Number} [top=0] Relative vertical coordinate inside Element.
+   * @returns {Boolean} true if succeeded, false otherwise.
+   */
   doubleClick: function HtmlXulElement_doubleClick(left, top) {
-    this.controller.click(this.elem, left, top);
+    return this.controller.click(this.elem, left, top);
   },
 
+  /**
+   * Performs a key press for the given keycode. 
+   * Try to avoid the usage of the ctrlKey and metaKey modifiers if the
+   * shortcut is a combination of Ctrl (Windows/Linux) and Cmd (Mac). In
+   * this case, use accelKey instead which will work across operating systems.
+   *
+   * @name keyPress
+   * @methodOf widgets.HtmlXulElement#
+   *
+   * @param {String} keycode Either a literal like 'b' or an enum like 'VK_ESCAPE'.
+   * @param {Object} [modifiers={}] Indicates modifier keys. true means pressed.
+   * @param {Boolean} [modifiers.ctrlKey=false] The Ctrl key.
+   * @param {Boolean} [modifiers.altKey=false] The Alt/Option key.
+   * @param {Boolean} [modifiers.shiftKey=false] The Shift key.
+   * @param {Boolean} [modifiers.metaKey=false] The Meta/Cmd key.
+   * @param {Boolean} [modifiers.accelKey=false] Ctrl key on Windows/Linux, 
+                                                 Cmd key on Mac.
+   * @return {Boolean} true if succeeded, false otherwise.
+   */
   keyPress: function HtmlXulElement_keypress(keycode, modifiers) {
     modifiers = modifiers || {};
-    this.controller.keypress(this.elem, keycode, modifiers);
+    return this.controller.keypress(this.elem, keycode, modifiers);
   },
 
+  /**
+   * Presses the selected mouse button down on the Element.
+   *
+   * @name mouseDown
+   * @methodOf widgets.HtmlXulElement#
+   *
+   * @param {Number} [button=0] The id of the button to press (0 - left, 1 - middle, 2 - right).
+   * @param {Number} [left=0] Relative horizontal coordinate inside Element.
+   * @param {Number} [top=0] Relative vertical coordinate inside Element.
+   * @returns {Boolean} true if succeeded, false otherwise.
+   */
   mouseDown: function HtmlXulElement_mouseDown(button, left, top) {
-    this.controller.mouseDown(this.elem, button, left, top);
+    return this.controller.mouseDown(this.elem, button, left, top);
   },
 
+  /**
+   * Releases the selected mouse button on the Element.
+   *
+   * @name mouseUp
+   * @methodOf widgets.HtmlXulElement#
+   *
+   * @param {Number} [button=0] The id of the button to press (0 - left, 1 - middle, 2 - right).
+   * @param {Number} [left=0] Relative horizontal coordinate inside Element.
+   * @param {Number} [top=0] Relative vertical coordinate inside Element.
+   * @returns {Boolean} true if succeeded, false otherwise.
+   */
   mouseUp: function HtmlXulElement_mouseUp(button, left, top) {
-    this.controller.mouseUp(this.elem, button, left, top);
+    return this.controller.mouseUp(this.elem, button, left, top);
   },
 
+  /**
+   * Clicks on the Element with the right mouse button.
+   *
+   * @name rightClick
+   * @methodOf widgets.HtmlXulElement#
+   *
+   * @param {Number} [left=0] Relative horizontal coordinate inside Element.
+   * @param {Number} [top=0] Relative vertical coordinate inside Element.
+   * @returns {Boolean} true if succeeded, false otherwise.
+   */
   rightClick: function HtmlXulElement_rightClick(left, top) {
-    this.controller.rightClick(this.elem, left, top);
+    return this.controller.rightClick(this.elem, left, top);
   }
 });
 
@@ -282,6 +457,23 @@ var HtmlElement = Inheritance.Class.extend(HtmlXulElement,
    * @constructs
    * @memberOf widgets
    * @extends widgets.HtmlXulElement
+   *
+   * @param {String} locatorType 
+   *   The type of locator being supplied. Choices are:
+   *     <ul>
+   *     <li>"node": A node, as in Mozmill's Elem()</li>
+   *     <li>"id": An ID string, as in Mozmill's ID()</li>
+   *     <li>"xpath": An XPath string, as in Mozmill's XPath()</li>
+   *     <li>"name": A name string, as in Mozmill's Name()</li>
+   *     <li>"lookup: A lookup string, as in Mozmill's Lookup()</li>
+   *     <li>"tag": A JQuery-style element selector string</li>
+   *     </ul>
+   * @param {node|String} locator 
+   *   The actual locator. If locatorType is "node," a node object is expected. 
+   *   For all other types, a String is expected.
+   * @param {document|Element} owner
+   *   The owner (parent) of this Element. The top of an Element map is owned by 
+   *   a document. Other members of the map are owned by their parent Elements.
    */
   initialize: function HtmlElement_initialize(locatorType, locator, owner) {
     this.parent(locatorType, locator, owner);
@@ -299,6 +491,23 @@ var HtmlRegion = Inheritance.Class.extend(HtmlElement,
    * @constructs
    * @memberOf widgets
    * @extends widgets.HtmlElement
+   *
+   * @param {String} locatorType 
+   *   The type of locator being supplied. Choices are:
+   *     <ul>
+   *     <li>"node": A node, as in Mozmill's Elem()</li>
+   *     <li>"id": An ID string, as in Mozmill's ID()</li>
+   *     <li>"xpath": An XPath string, as in Mozmill's XPath()</li>
+   *     <li>"name": A name string, as in Mozmill's Name()</li>
+   *     <li>"lookup: A lookup string, as in Mozmill's Lookup()</li>
+   *     <li>"tag": A JQuery-style element selector string</li>
+   *     </ul>
+   * @param {node|String} locator 
+   *   The actual locator. If locatorType is "node," a node object is expected. 
+   *   For all other types, a String is expected.
+   * @param {document|Element} owner
+   *   The owner (parent) of this Element. The top of an Element map is owned by 
+   *   a document. Other members of the map are owned by their parent Elements.
    */
   initialize: function HtmlRegion_initialize(locatorType, locator, owner) {
     this.parent(locatorType, locator, owner);
@@ -316,6 +525,23 @@ var XulElement = Inheritance.Class.extend(HtmlXulElement,
    * @constructs
    * @memberOf widgets
    * @extends widgets.HtmlXulElement
+   *
+   * @param {String} locatorType 
+   *   The type of locator being supplied. Choices are:
+   *     <ul>
+   *     <li>"node": A node, as in Mozmill's Elem()</li>
+   *     <li>"id": An ID string, as in Mozmill's ID()</li>
+   *     <li>"xpath": An XPath string, as in Mozmill's XPath()</li>
+   *     <li>"name": A name string, as in Mozmill's Name()</li>
+   *     <li>"lookup: A lookup string, as in Mozmill's Lookup()</li>
+   *     <li>"tag": A JQuery-style element selector string</li>
+   *     </ul>
+   * @param {node|String} locator 
+   *   The actual locator. If locatorType is "node," a node object is expected. 
+   *   For all other types, a String is expected.
+   * @param {document|Element} owner
+   *   The owner (parent) of this Element. The top of an Element map is owned by 
+   *   a document. Other members of the map are owned by their parent Elements.
    */
   initialize: function XulElement_initialize(locatorType, locator, owner) {
     this.parent(locatorType, locator, owner);
@@ -333,6 +559,23 @@ var XulRegion = Inheritance.Class.extend(XulElement,
    * @constructs
    * @memberOf widgets
    * @extends widgets.XulElement
+   *
+   * @param {String} locatorType 
+   *   The type of locator being supplied. Choices are:
+   *     <ul>
+   *     <li>"node": A node, as in Mozmill's Elem()</li>
+   *     <li>"id": An ID string, as in Mozmill's ID()</li>
+   *     <li>"xpath": An XPath string, as in Mozmill's XPath()</li>
+   *     <li>"name": A name string, as in Mozmill's Name()</li>
+   *     <li>"lookup: A lookup string, as in Mozmill's Lookup()</li>
+   *     <li>"tag": A JQuery-style element selector string</li>
+   *     </ul>
+   * @param {node|String} locator 
+   *   The actual locator. If locatorType is "node," a node object is expected. 
+   *   For all other types, a String is expected.
+   * @param {document|Element} owner
+   *   The owner (parent) of this Element. The top of an Element map is owned by 
+   *   a document. Other members of the map are owned by their parent Elements.
    */
   initialize: function XulRegion_initialize(locatorType, locator, owner) {
     this.parent(locatorType, locator, owner);
