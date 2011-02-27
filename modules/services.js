@@ -42,6 +42,7 @@
  */
 var services = exports;
 
+
 // Import global Javascript modules offered by Firefox
 Components.utils.import('resource://gre/modules/Services.jsm');
 Components.utils.import("resource://gre/modules/XPCOMUtils.jsm");
@@ -52,45 +53,135 @@ Components.utils.import("resource://gre/modules/XPCOMUtils.jsm");
  */
 services.appinfo = Services.appinfo;
 
+
+/**
+ *
+ */
+XPCOMUtils.defineLazyGetter(services, "bookmarks", function () {
+  return Cc["@mozilla.org/browser/nav-bookmarks-service;1"].
+         getService(Ci.nsINavBookmarksService);
+});
+
+
+/**
+ *
+ */
+XPCOMUtils.defineLazyGetter(services, "browserHistory", function () {
+  return Cc["@mozilla.org/browser/nav-history-service;1"].
+         getService(Ci.nsIBrowserHistory);
+});
+
+
+/**
+ *
+ */
+XPCOMUtils.defineLazyGetter(services, "clipboard", function () {
+  return Cc["@mozilla.org/widget/clipboardhelper;1"].
+         getService(Ci.nsIClipboardHelper);
+});
+
+
 /**
  *
  */
 services.console = Services.console;
+
 
 /**
  *
  */
 services.contentPrefs = Services.contentPrefs;
 
+
+/**
+ *
+ */
+XPCOMUtils.defineLazyGetter(services, "cookies", function () {
+  return Cc["@mozilla.org/cookiemanager;1"].
+         getService(Ci.nsICookieManager2);
+});
+
+
 /**
  *
  */
 services.dirsrv = Services.dirsrv;
+
+
+/**
+ *
+ */
+XPCOMUtils.defineLazyGetter(services, "downloads", function () {
+  return Cc["@mozilla.org/download-manager;1"].
+         getService(Ci.nsIDownloadManager);
+});
+
 
 /**
  *
  */
 services.eTLD = Services.eTLD;
 
+
+/**
+ *
+ */
+XPCOMUtils.defineLazyGetter(services, "forms", function () {
+  return Cc["@mozilla.org/satchel/form-history;1"].
+         getService(Ci.nsIFormHistory2);
+});
+
+
 /**
  *
  */
 services.io = Services.io;
+
+
+/**
+ *
+ */
+XPCOMUtils.defineLazyGetter(services, "history", function () {
+  return Cc["@mozilla.org/browser/nav-history-service;1"].
+         getService(Ci.nsINavHistoryService);
+});
+
 
 /**
  *
  */
 services.locale = Services.locale;
 
+
+/**
+ *
+ */
+XPCOMUtils.defineLazyGetter(services, "logins", function () {
+  return Cc["@mozilla.org/login-manager;1"].
+         getService(Ci.nsILoginManager);
+});
+
+
 /**
  *
  */
 services.obs = Services.obs;
 
+
+/**
+ *
+ */
+XPCOMUtils.defineLazyGetter(services, "pbs", function () {
+  return Cc["@mozilla.org/privatebrowsing;1"].
+         getService(Ci.nsIPrivateBrowsingService);
+});
+
+
 /**
  *
  */
 services.perms = Services.perms;
+
 
 /**
  *
@@ -103,15 +194,18 @@ XPCOMUtils.defineLazyGetter(services, "prefs", function () {
          getService(Ci.nsIPrefService);
 });
 
+
 /**
  *
  */
 services.prompt = Services.prompt;
 
+
 /**
  *
  */
 services.search = Services.search;
+
 
 /**
  *
@@ -121,30 +215,36 @@ XPCOMUtils.defineLazyGetter(services, "session", function () {
          getService(Ci.nsISessionStore);
 });
 
+
 /**
  *
  */
 services.storage = Services.storage;
+
 
 /**
  *
  */
 services.strings = Services.strings;
 
+
 /**
  *
  */
 services.urlFormatter = Services.urlFormatter;
+
 
 /**
  *
  */
 services.vc = Services.vc;
 
+
 /**
  *
  */
 services.wm = Services.wm;
+
 
 /**
  *
