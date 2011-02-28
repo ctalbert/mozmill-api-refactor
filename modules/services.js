@@ -18,8 +18,7 @@
  * the Initial Developer. All Rights Reserved.
  *
  * Contributor(s):
- *   Henrik Skupin <hskupin@mozilla.com>
- *   Geo Mealer <gmealer@mozilla.com>
+ *   Henrik Skupin <mail@hskupin.info> (Original Author)
  *
  * Alternatively, the contents of this file may be used under the terms of
  * either the GNU General Public License Version 2 or later (the "GPL"), or
@@ -49,13 +48,18 @@ Components.utils.import("resource://gre/modules/XPCOMUtils.jsm");
 
 
 /**
+ * Service for application related properties
  *
+ * @see <a href="http://mxr.mozilla.org/mozilla-central/source/xpcom/system/nsIXULAppInfo.idl">nsIXULAppInfo</a>
+ * @see <a href="http://mxr.mozilla.org/mozilla-central/source/xpcom/system/nsIXULRuntime.idl">nsIXULRuntime</a>
  */
 services.appinfo = Services.appinfo;
 
 
 /**
+ * Service for handling bookmarks
  *
+ * @see <a href="http://mxr.mozilla.org/mozilla-central/source/toolkit/components/places/public/nsINavBookmarksService.idl">nsINavBookmarksService</a>
  */
 XPCOMUtils.defineLazyGetter(services, "bookmarks", function () {
   return Cc["@mozilla.org/browser/nav-bookmarks-service;1"].
@@ -64,7 +68,9 @@ XPCOMUtils.defineLazyGetter(services, "bookmarks", function () {
 
 
 /**
+ * Service for handling the browser's global history
  *
+ * @see <a href="http://mxr.mozilla.org/mozilla-central/source/toolkit/components/places/public/nsIBrowserHistory.idl">nsIBrowserHistory</a>
  */
 XPCOMUtils.defineLazyGetter(services, "browserHistory", function () {
   return Cc["@mozilla.org/browser/nav-history-service;1"].
@@ -73,7 +79,9 @@ XPCOMUtils.defineLazyGetter(services, "browserHistory", function () {
 
 
 /**
+ * Service to access the clipboard
  *
+ * @see <a href="http://mxr.mozilla.org/mozilla-central/source/widget/public/nsIClipboardHelper.idl">nsIClipboardHelper</a>
  */
 XPCOMUtils.defineLazyGetter(services, "clipboard", function () {
   return Cc["@mozilla.org/widget/clipboardhelper;1"].
@@ -82,19 +90,25 @@ XPCOMUtils.defineLazyGetter(services, "clipboard", function () {
 
 
 /**
+ * Service to access the Error Console
  *
+ * @see <a href="http://mxr.mozilla.org/mozilla-central/source/xpcom/base/nsIConsoleService.idl">nsIConsoleService</a>
  */
 services.console = Services.console;
 
 
 /**
+ * Service for handling content related preferences
  *
+ * @see <a href="http://mxr.mozilla.org/mozilla-central/source/dom/interfaces/base/nsIContentPrefService.idl">nsIContentPrefService</a>
  */
 services.contentPrefs = Services.contentPrefs;
 
 
 /**
+ * Service for handling cookies
  *
+ * @see <a href="http://mxr.mozilla.org/mozilla-central/source/netwerk/cookie/nsICookieManager2.idl">nsICookieManager2</a>
  */
 XPCOMUtils.defineLazyGetter(services, "cookies", function () {
   return Cc["@mozilla.org/cookiemanager;1"].
@@ -103,13 +117,17 @@ XPCOMUtils.defineLazyGetter(services, "cookies", function () {
 
 
 /**
+ * Service for handling files and directories
  *
+ * @see <a href="http://mxr.mozilla.org/mozilla-central/source/xpcom/io/nsIDirectoryService.idl">nsIDirectoryService</a>
  */
-services.dirsrv = Services.dirsrv;
+services.dirsvc = Services.dirsvc;
 
 
 /**
+ * Service for handling downloads
  *
+ * @see <a href="http://mxr.mozilla.org/mozilla-central/source/toolkit/components/downloads/public/nsIDownloadManager.idl">nsIDownloadManager</a>
  */
 XPCOMUtils.defineLazyGetter(services, "downloads", function () {
   return Cc["@mozilla.org/download-manager;1"].
@@ -118,13 +136,17 @@ XPCOMUtils.defineLazyGetter(services, "downloads", function () {
 
 
 /**
+ * Service for handling data of certificates
  *
+ * @see <a href="http://mxr.mozilla.org/mozilla-central/source/netwerk/dns/nsIEffectiveTLDService.idl">nsIEffectiveTLDService</a>
  */
 services.eTLD = Services.eTLD;
 
 
 /**
+ * Service for handling the history of form elements
  *
+ * @see <a href="http://mxr.mozilla.org/mozilla-central/source/toolkit/components/satchel/public/nsIFormHistory.idl">nsIFormHistory2</a>
  */
 XPCOMUtils.defineLazyGetter(services, "forms", function () {
   return Cc["@mozilla.org/satchel/form-history;1"].
@@ -133,13 +155,18 @@ XPCOMUtils.defineLazyGetter(services, "forms", function () {
 
 
 /**
+ * Service to handle network related I/O operations
  *
+ * @see <a href="http://mxr.mozilla.org/mozilla-central/source/netwerk/base/public/nsIIOService.idl">nsIIOService</a>
+ * @see <a href="http://mxr.mozilla.org/mozilla-central/source/netwerk/base/public/nsIIOService2.idl">nsIIOService2</a>
  */
 services.io = Services.io;
 
 
 /**
+ * Service to handle the Places history
  *
+ * @see <a href="http://mxr.mozilla.org/mozilla-central/source/toolkit/components/places/public/nsINavHistoryService.idl">nsINavHistoryService</a>
  */
 XPCOMUtils.defineLazyGetter(services, "history", function () {
   return Cc["@mozilla.org/browser/nav-history-service;1"].
@@ -148,13 +175,17 @@ XPCOMUtils.defineLazyGetter(services, "history", function () {
 
 
 /**
+ * Service to handle locale related information
  *
+ * @see <a href="http://mxr.mozilla.org/mozilla-central/source/intl/locale/idl/nsILocaleService.idl">nsILocaleService</a>
  */
 services.locale = Services.locale;
 
 
 /**
+ * Service to handle the password manager
  *
+ * @see <a href="http://mxr.mozilla.org/mozilla-central/source/toolkit/components/passwordmgr/public/nsILoginManager.idl">nsILoginManager</a>
  */
 XPCOMUtils.defineLazyGetter(services, "logins", function () {
   return Cc["@mozilla.org/login-manager;1"].
@@ -163,13 +194,17 @@ XPCOMUtils.defineLazyGetter(services, "logins", function () {
 
 
 /**
+ * Service to handle the observer service
  *
+ * @see <a href="http://mxr.mozilla.org/mozilla-central/source/xpcom/ds/nsIObserverService.idl">nsIObserverService</a>
  */
 services.obs = Services.obs;
 
 
 /**
+ * Service to handle Private Browsing
  *
+ * @see <a href="http://mxr.mozilla.org/mozilla-central/source/netwerk/base/public/nsIPrivateBrowsingService.idl">nsIPrivateBrowsingService</a>
  */
 XPCOMUtils.defineLazyGetter(services, "pbs", function () {
   return Cc["@mozilla.org/privatebrowsing;1"].
@@ -178,16 +213,20 @@ XPCOMUtils.defineLazyGetter(services, "pbs", function () {
 
 
 /**
+ * Service to access the permission manager on a site-by-site basis
  *
+ * @see <a href="http://mxr.mozilla.org/mozilla-central/source/netwerk/base/public/nsIPermissionManager.idl">nsIPermissionManager</a>
  */
 services.perms = Services.perms;
 
 
 /**
+ * Service to access preferences
  *
- * XXX We can't use the native prefs service yet because it QI to nsIPrefBranch2
- * and our preferences module doesn't support it
+ * @see <a href="http://mxr.mozilla.org/mozilla-central/source/modules/libpref/public/nsIPrefService.idl">nsIPrefService</a>
  */
+// XXX: We can't use the native prefs service yet because it QI to nsIPrefBranch2
+// and our preferences module doesn't support it
 // services.prefs = Services.prefs;
 XPCOMUtils.defineLazyGetter(services, "prefs", function () {
   return Cc["@mozilla.org/preferences-service;1"].
@@ -196,19 +235,25 @@ XPCOMUtils.defineLazyGetter(services, "prefs", function () {
 
 
 /**
+ * Service to handle prompts
  *
+ * @see <a href="http://mxr.mozilla.org/mozilla-central/source/embedding/components/windowwatcher/public/nsIPromptService.idl">nsIPromptService</a>
  */
 services.prompt = Services.prompt;
 
 
 /**
+ * Service to handle the browser's search feature
  *
+ * @see <a href="http://mxr.mozilla.org/mozilla-central/source/netwerk/base/public/nsIBrowserSearchService.idl">nsIBrowserSearchService</a>
  */
 services.search = Services.search;
 
 
 /**
+ * Service to handle sessions
  *
+ * @see <a href="http://mxr.mozilla.org/mozilla-central/source/browser/components/sessionstore/nsISessionStore.idl">nsISessionStore</a>
  */
 XPCOMUtils.defineLazyGetter(services, "session", function () {
   return Cc["@mozilla.org/browser/sessionstore;1"].
@@ -217,36 +262,48 @@ XPCOMUtils.defineLazyGetter(services, "session", function () {
 
 
 /**
+ * Service to access the storage service
  *
+ * @see <a href="http://mxr.mozilla.org/mozilla-central/source/storage/public/mozIStorageService.idl">mozIStorageService</a>
  */
 services.storage = Services.storage;
 
 
 /**
+ * Service to handle strings
  *
+ * @see <a href="http://mxr.mozilla.org/mozilla-central/source/intl/strres/public/nsIStringBundle.idl">nsIStringBundleService</a>
  */
 services.strings = Services.strings;
 
 
 /**
+ * Service to handle formatting of URLs based on application properties
  *
+ * @see <a href="http://mxr.mozilla.org/mozilla-central/source/toolkit/components/urlformatter/public/nsIURLFormatter.idl">nsIURLFormatter</a>
  */
 services.urlFormatter = Services.urlFormatter;
 
 
 /**
+ * Service to compare application versions
  *
+ * @see <a href="http://mxr.mozilla.org/mozilla-central/source/xpcom/base/nsIVersionComparator.idl">nsIVersionComparator</a>
  */
 services.vc = Services.vc;
 
 
 /**
+ * Service to handle windows
  *
+ * @see <a href="http://mxr.mozilla.org/mozilla-central/source/xpfe/appshell/public/nsIWindowMediator.idl">nsIWindowMediator</a>
  */
 services.wm = Services.wm;
 
 
 /**
+ * Service to operate on windows
  *
+ * @see <a href="http://mxr.mozilla.org/mozilla-central/source/embedding/components/windowwatcher/public/nsIWindowWatcher.idl">nsIWindowWatcher</a>
  */
 services.ww = Services.ww;

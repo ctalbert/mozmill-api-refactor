@@ -35,6 +35,7 @@
  *
  * ***** END LICENSE BLOCK ***** */
 
+
 /**
  * Basic initialization we want for every test module
  *
@@ -44,6 +45,14 @@
 function testModule(module) {
   // Add generally used requires
   module.Assert = require("assert");
+
+ /**
+  * Wrapper to access most used back-end services
+  *
+  * @name services
+  * @see services
+  * @memberOf module
+  */
   module.services = require("services");
 
   module.Browser = require("ui/browser");
