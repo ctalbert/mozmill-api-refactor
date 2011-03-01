@@ -102,13 +102,13 @@ var Element = Inheritance.Class.create(
         // We must be a top-level element. We sent in a document as owner.
         this._owner = undefined;
         this._document = owner;
-        this._controller = mozmill.controller.MozMillcontroller(this._document.defaultView);
+        this._controller = mozmill.controller.MozMillController(this._document.defaultView);
       }
     }
     else {
       // Not supplied at all, so we're top level and our doc is the current window.
       this._owner = undefined;
-      this._controller = mozmill.getBrowsercontroller();
+      this._controller = mozmill.getBrowserController();
       this._document = this._controller.window.document;
     }
 
@@ -172,7 +172,7 @@ var Element = Inheritance.Class.create(
       // look like.
       case "tag":
         var collector = this._getCollector();
-        collector.querynodes(this._locator);
+        collector.queryNodes(this._locator);
         if (collector.nodes.length < 1)
           throw new Error("Could not find node for tag: " + this._locator);
         if (collector.nodes.length > 1)
@@ -245,7 +245,7 @@ var Element = Inheritance.Class.create(
    * @fieldOf widgets.Element#
    */
   get node() {
-    return this.elem.getnode();
+    return this.elem.getNode();
   }
 });
 
