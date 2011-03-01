@@ -37,7 +37,7 @@
 
 /**
  * @name services
- * @namespace 
+ * @namespace Defines wrapper methods for back-end services
  */
 var services = exports;
 
@@ -46,6 +46,10 @@ var services = exports;
 Components.utils.import('resource://gre/modules/Services.jsm');
 Components.utils.import("resource://gre/modules/XPCOMUtils.jsm");
 
+
+/**#@+
+   @memberOf services
+*/
 
 /**
  * Service for application related properties

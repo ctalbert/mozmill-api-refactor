@@ -74,7 +74,11 @@ function testModule(aModule) {
   aModule.expect = require("assertions").expect;
 
   /**
+   * Object with wrapper methods for back-end services
    *
+   * @name services
+   * @type services
+   * @memberOf module
    */
   aModule.services = require("services");
 
