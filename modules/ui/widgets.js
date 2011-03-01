@@ -62,16 +62,16 @@ var Element = Inheritance.Class.create(
    * @constructs
    * @memberOf widgets
    *
-   * @param {String} locatorType 
+   * @param {String} locatorType
    *   The type of locator being supplied. Choices are:
-   *     <ul>
-   *     <li>"node": A node, as in Mozmill's Elem()</li>
-   *     <li>"id": An ID string, as in Mozmill's ID()</li>
-   *     <li>"xpath": An XPath string, as in Mozmill's XPath()</li>
-   *     <li>"name": A name string, as in Mozmill's Name()</li>
-   *     <li>"lookup: A lookup string, as in Mozmill's Lookup()</li>
-   *     <li>"tag": A JQuery-style element selector string</li>
-   *     </ul>
+   *     <dl>
+   *     <dd>node</dd>   <dt>A node, as in Mozmill's Elem()</dt>
+   *     <dd>id</dd>     <dt>An ID string, as in Mozmill's ID()</dt>
+   *     <dd>xpath</dd>  <dt>An XPath string, as in Mozmill's XPath()</dt>
+   *     <dd>name</dd>   <dt>A name string, as in Mozmill's Name()</dt>
+   *     <dd>lookup</dd> <dt>A lookup string, as in Mozmill's Lookup()</dt>
+   *     <dd>tag</dd>    <dt>A JQuery-style element selector string</dt>
+   *     </dl>
    * @param {node|String} locator 
    *   The actual locator. If locatorType is "node," a node object is expected. 
    *   For all other types, a String is expected.
@@ -261,16 +261,16 @@ var XmlElement = Inheritance.Class.extend(Element,
    * @memberOf widgets
    * @extends widgets.Element
    *
-   * @param {String} locatorType 
+   * @param {String} locatorType
    *   The type of locator being supplied. Choices are:
-   *     <ul>
-   *     <li>"node": A node, as in Mozmill's Elem()</li>
-   *     <li>"id": An ID string, as in Mozmill's ID()</li>
-   *     <li>"xpath": An XPath string, as in Mozmill's XPath()</li>
-   *     <li>"name": A name string, as in Mozmill's Name()</li>
-   *     <li>"lookup: A lookup string, as in Mozmill's Lookup()</li>
-   *     <li>"tag": A JQuery-style element selector string</li>
-   *     </ul>
+   *     <dl>
+   *     <dd>node</dd>   <dt>A node, as in Mozmill's Elem()</dt>
+   *     <dd>id</dd>     <dt>An ID string, as in Mozmill's ID()</dt>
+   *     <dd>xpath</dd>  <dt>An XPath string, as in Mozmill's XPath()</dt>
+   *     <dd>name</dd>   <dt>A name string, as in Mozmill's Name()</dt>
+   *     <dd>lookup</dd> <dt>A lookup string, as in Mozmill's Lookup()</dt>
+   *     <dd>tag</dd>    <dt>A JQuery-style element selector string</dt>
+   *     </dl>
    * @param {node|String} locator 
    *   The actual locator. If locatorType is "node," a node object is expected. 
    *   For all other types, a String is expected.
@@ -294,16 +294,16 @@ var XmlTree = Inheritance.Class.extend(Element,
    * @memberOf widgets
    * @extends widgets.Element
    *
-   * @param {String} locatorType 
+   * @param {String} locatorType
    *   The type of locator being supplied. Choices are:
-   *     <ul>
-   *     <li>"node": A node, as in Mozmill's Elem()</li>
-   *     <li>"id": An ID string, as in Mozmill's ID()</li>
-   *     <li>"xpath": An XPath string, as in Mozmill's XPath()</li>
-   *     <li>"name": A name string, as in Mozmill's Name()</li>
-   *     <li>"lookup: A lookup string, as in Mozmill's Lookup()</li>
-   *     <li>"tag": A JQuery-style element selector string</li>
-   *     </ul>
+   *     <dl>
+   *     <dd>node</dd>   <dt>A node, as in Mozmill's Elem()</dt>
+   *     <dd>id</dd>     <dt>An ID string, as in Mozmill's ID()</dt>
+   *     <dd>xpath</dd>  <dt>An XPath string, as in Mozmill's XPath()</dt>
+   *     <dd>name</dd>   <dt>A name string, as in Mozmill's Name()</dt>
+   *     <dd>lookup</dd> <dt>A lookup string, as in Mozmill's Lookup()</dt>
+   *     <dd>tag</dd>    <dt>A JQuery-style element selector string</dt>
+   *     </dl>
    * @param {node|String} locator 
    *   The actual locator. If locatorType is "node," a node object is expected. 
    *   For all other types, a String is expected.
@@ -329,16 +329,16 @@ var HtmlXulElement = Inheritance.Class.extend(Element,
    * @memberOf widgets
    * @extends widgets.Element
    *
-   * @param {String} locatorType 
+   * @param {String} locatorType
    *   The type of locator being supplied. Choices are:
-   *     <ul>
-   *     <li>"node": A node, as in Mozmill's Elem()</li>
-   *     <li>"id": An ID string, as in Mozmill's ID()</li>
-   *     <li>"xpath": An XPath string, as in Mozmill's XPath()</li>
-   *     <li>"name": A name string, as in Mozmill's Name()</li>
-   *     <li>"lookup: A lookup string, as in Mozmill's Lookup()</li>
-   *     <li>"tag": A JQuery-style element selector string</li>
-   *     </ul>
+   *     <dl>
+   *     <dd>node</dd>   <dt>A node, as in Mozmill's Elem()</dt>
+   *     <dd>id</dd>     <dt>An ID string, as in Mozmill's ID()</dt>
+   *     <dd>xpath</dd>  <dt>An XPath string, as in Mozmill's XPath()</dt>
+   *     <dd>name</dd>   <dt>A name string, as in Mozmill's Name()</dt>
+   *     <dd>lookup</dd> <dt>A lookup string, as in Mozmill's Lookup()</dt>
+   *     <dd>tag</dd>    <dt>A JQuery-style element selector string</dt>
+   *     </dl>
    * @param {node|String} locator 
    *   The actual locator. If locatorType is "node," a node object is expected. 
    *   For all other types, a String is expected.
@@ -458,16 +458,16 @@ var HtmlElement = Inheritance.Class.extend(HtmlXulElement,
    * @memberOf widgets
    * @extends widgets.HtmlXulElement
    *
-   * @param {String} locatorType 
+   * @param {String} locatorType
    *   The type of locator being supplied. Choices are:
-   *     <ul>
-   *     <li>"node": A node, as in Mozmill's Elem()</li>
-   *     <li>"id": An ID string, as in Mozmill's ID()</li>
-   *     <li>"xpath": An XPath string, as in Mozmill's XPath()</li>
-   *     <li>"name": A name string, as in Mozmill's Name()</li>
-   *     <li>"lookup: A lookup string, as in Mozmill's Lookup()</li>
-   *     <li>"tag": A JQuery-style element selector string</li>
-   *     </ul>
+   *     <dl>
+   *     <dd>node</dd>   <dt>A node, as in Mozmill's Elem()</dt>
+   *     <dd>id</dd>     <dt>An ID string, as in Mozmill's ID()</dt>
+   *     <dd>xpath</dd>  <dt>An XPath string, as in Mozmill's XPath()</dt>
+   *     <dd>name</dd>   <dt>A name string, as in Mozmill's Name()</dt>
+   *     <dd>lookup</dd> <dt>A lookup string, as in Mozmill's Lookup()</dt>
+   *     <dd>tag</dd>    <dt>A JQuery-style element selector string</dt>
+   *     </dl>
    * @param {node|String} locator 
    *   The actual locator. If locatorType is "node," a node object is expected. 
    *   For all other types, a String is expected.
@@ -492,16 +492,16 @@ var HtmlRegion = Inheritance.Class.extend(HtmlElement,
    * @memberOf widgets
    * @extends widgets.HtmlElement
    *
-   * @param {String} locatorType 
+   * @param {String} locatorType
    *   The type of locator being supplied. Choices are:
-   *     <ul>
-   *     <li>"node": A node, as in Mozmill's Elem()</li>
-   *     <li>"id": An ID string, as in Mozmill's ID()</li>
-   *     <li>"xpath": An XPath string, as in Mozmill's XPath()</li>
-   *     <li>"name": A name string, as in Mozmill's Name()</li>
-   *     <li>"lookup: A lookup string, as in Mozmill's Lookup()</li>
-   *     <li>"tag": A JQuery-style element selector string</li>
-   *     </ul>
+   *     <dl>
+   *     <dd>node</dd>   <dt>A node, as in Mozmill's Elem()</dt>
+   *     <dd>id</dd>     <dt>An ID string, as in Mozmill's ID()</dt>
+   *     <dd>xpath</dd>  <dt>An XPath string, as in Mozmill's XPath()</dt>
+   *     <dd>name</dd>   <dt>A name string, as in Mozmill's Name()</dt>
+   *     <dd>lookup</dd> <dt>A lookup string, as in Mozmill's Lookup()</dt>
+   *     <dd>tag</dd>    <dt>A JQuery-style element selector string</dt>
+   *     </dl>
    * @param {node|String} locator 
    *   The actual locator. If locatorType is "node," a node object is expected. 
    *   For all other types, a String is expected.
@@ -526,16 +526,16 @@ var XulElement = Inheritance.Class.extend(HtmlXulElement,
    * @memberOf widgets
    * @extends widgets.HtmlXulElement
    *
-   * @param {String} locatorType 
+   * @param {String} locatorType
    *   The type of locator being supplied. Choices are:
-   *     <ul>
-   *     <li>"node": A node, as in Mozmill's Elem()</li>
-   *     <li>"id": An ID string, as in Mozmill's ID()</li>
-   *     <li>"xpath": An XPath string, as in Mozmill's XPath()</li>
-   *     <li>"name": A name string, as in Mozmill's Name()</li>
-   *     <li>"lookup: A lookup string, as in Mozmill's Lookup()</li>
-   *     <li>"tag": A JQuery-style element selector string</li>
-   *     </ul>
+   *     <dl>
+   *     <dd>node</dd>   <dt>A node, as in Mozmill's Elem()</dt>
+   *     <dd>id</dd>     <dt>An ID string, as in Mozmill's ID()</dt>
+   *     <dd>xpath</dd>  <dt>An XPath string, as in Mozmill's XPath()</dt>
+   *     <dd>name</dd>   <dt>A name string, as in Mozmill's Name()</dt>
+   *     <dd>lookup</dd> <dt>A lookup string, as in Mozmill's Lookup()</dt>
+   *     <dd>tag</dd>    <dt>A JQuery-style element selector string</dt>
+   *     </dl>
    * @param {node|String} locator 
    *   The actual locator. If locatorType is "node," a node object is expected. 
    *   For all other types, a String is expected.
@@ -560,16 +560,16 @@ var XulRegion = Inheritance.Class.extend(XulElement,
    * @memberOf widgets
    * @extends widgets.XulElement
    *
-   * @param {String} locatorType 
+   * @param {String} locatorType
    *   The type of locator being supplied. Choices are:
-   *     <ul>
-   *     <li>"node": A node, as in Mozmill's Elem()</li>
-   *     <li>"id": An ID string, as in Mozmill's ID()</li>
-   *     <li>"xpath": An XPath string, as in Mozmill's XPath()</li>
-   *     <li>"name": A name string, as in Mozmill's Name()</li>
-   *     <li>"lookup: A lookup string, as in Mozmill's Lookup()</li>
-   *     <li>"tag": A JQuery-style element selector string</li>
-   *     </ul>
+   *     <dl>
+   *     <dd>node</dd>   <dt>A node, as in Mozmill's Elem()</dt>
+   *     <dd>id</dd>     <dt>An ID string, as in Mozmill's ID()</dt>
+   *     <dd>xpath</dd>  <dt>An XPath string, as in Mozmill's XPath()</dt>
+   *     <dd>name</dd>   <dt>A name string, as in Mozmill's Name()</dt>
+   *     <dd>lookup</dd> <dt>A lookup string, as in Mozmill's Lookup()</dt>
+   *     <dd>tag</dd>    <dt>A JQuery-style element selector string</dt>
+   *     </dl>
    * @param {node|String} locator 
    *   The actual locator. If locatorType is "node," a node object is expected. 
    *   For all other types, a String is expected.
