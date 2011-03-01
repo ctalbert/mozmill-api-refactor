@@ -54,7 +54,7 @@ function testElements() {
   expect.match(browser.navBar.urlBarText.getText(), /google/);
   expect.notMatch(browser.navBar.urlBarText.getText(), /mozilla/);
 
-  var count = Services.sessionStore.getClosedWindowCount(browser.window);
+  var count = services.session.getClosedWindowCount(browser.window);
   expect.equal(count, 0, "No windows are in the undo stack");
 
   var tabItems = browser.tabBar.tabs.items;
